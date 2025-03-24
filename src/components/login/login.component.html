@@ -1,0 +1,23 @@
+
+<div class="d-flex justify-content-center align-items-center vh-100" style="background-color: rgba(90,132,122,255);">
+    <div class="card" style="width: 25%" >
+        <h2 class="header">INKSPIRE</h2>
+        <img src="maskot.jpeg" class="card-img-top" alt="Giriş Yap">
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope"></i></span>
+                <input type="text" [(ngModel)]="email" class="form-control" placeholder="E-posta" aria-label="email" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
+                <input type="password" [(ngModel)]="password" class="form-control" placeholder="Şifre" aria-label="Password" aria-describedby="basic-addon1">
+            </div>
+            <button (click)="onLoginClicked()" type="button" class="btn btn-outline-success w-100" >Giriş Yap</button>  
+        </div>
+        <div class="button-container">
+            <button (click)="goToHome()" type="button" class="btn btn-outline-secondary customButton">Ana Sayfa</button>
+            <button (click)="goToRegister()" type="button" class="btn btn-outline-secondary customButton">Kayıt Ol</button>
+        </div>
+         </div>
+</div>
+

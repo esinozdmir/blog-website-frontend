@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<div class="d-flex">
+    <div style="width: 60%;">
+        <div class="post-container align-items-center mb-5 mt-5">
+            <div class="card" style="width: 100%; cursor: pointer;">
+                <div (click)="goToProfile()" class="card-body">
+                    <h4 class="title card-title">{{blogPost?.title}}</h4>
+                    <p class="card-text">{{blogPost?.content}}</p>
+                    <div *ngIf="blogPost?.imageUrl" class="image-container">
+                        <img [src]="blogPost?.imageUrl" alt="image">
+                    </div>
+                    <h6 class="author card-subtitle mb-2 text-muted">{{ userName || "Yükleniyor..."}}</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="post-container align-items-center mb-5 mt-5">
+            <div class="input-group mb-3" style="width: 100%;">
+                <textarea type="text" [(ngModel)]="comment" class="form-control" rows="3" placeholder="Yorum Yap" aria-label="Recipient's username" aria-describedby="basic-addon2"></textarea>
+                <button (click)="shareComment()" type="button" class="btn btn-outline-secondary btnE">Paylaş</button>
+            </div>
+        </div>
+    </div>
+
+    <div style="width: 35%;">
+        <div class="card comment-container mt-5" style="width: 100%;">
+            <div class="card-body">
+                <h4 style="text-align: center;">Yorumlar</h4>
+                <div *ngFor ="let comment of comments">
+                    <div class="d-flex justify-content-center align-items-center mb-1 mt-3">
+                      <div class="card" style="width: 90%; ">
+                        <div class="card-body">
+                            <p class="card-text">{{ userNames[comment?.userId || "0"] || "Yükleniyor..."}}</p>
+                            <h6 class="title card-title">{{comment.comment}}</h6>
+                            <div  *ngIf="deleteMyComment(comment)" class="input-group">
+                                <span class="input-group-text">İçerik</span>
+                                <textarea rows="7" class="form-control" [(ngModel)]="comment.comment"
+                                    aria-label="Detaylı içerik"></textarea>
+                            </div>
+                            <p class="card-text">{{comment.commentDate | date:'dd MMMM yyyy, HH:mm'}}</p>
+                            <button *ngIf="deleteMyComment(comment)" (click)="updateComment(comment)" type="button"
+                            class="btn btn-outline-success me-2 mt-2">Güncelle</button>
+                            <button *ngIf="deleteMyComment(comment)" (click)="deleteBlogPost(comment)" type="button"
+                            class="btn btn-outline-danger mt-2">Sil</button>
+                        </div>
+                      </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg" style="background-color:#5a847a31;" >
+  <div class="container-fluid">
+    <div style="width: 70%;">
+      <img src="maskotbg.png" class="img-fluid" width=12% alt="Giriş Yap" (click)="goToHome()" style="cursor: pointer;">
+      <span (click)="goToHome()" class=""
+        style="font-size: larger; font-family: 'Madimi One', sans-serif; cursor: pointer;">Inkspire</span>
+    </div>
+    <div class="collapse navbar-collapse right-container d-flex justify-content-end align-items-center w-100" style="width: 100%;" id="navbarSupportedContent">
+      <button *ngIf="authentication()" (click)="blogCreateClicked()" type="button" class="btn">Yazı Oluştur</button>
+      <form (ngSubmit)="onSearch()" class="d-flex custom-form" role="search">
+        <input class="form-control me-2" type="text" [(ngModel)]="searchQuery" name="search" (input)="onSearch()" placeholder="Ara..." aria-label="Search">
+        <button  class="btn btn-outline-success" (click)="onSearch()" type="submit">Search</button>
+      </form>
+
+      <div *ngIf="authentication()" class="nav-item dropdown position-relative">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <div class="custom-text me-1">{{user.firstName }}</div>
+          <div class="custom-text">{{user.lastName }}</div>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" style="cursor: pointer;" [style.display]="'block'"
+              (click)="navigateToProfile()">Profil</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" style="cursor: pointer;" (click)="logout()">Çıkış</a></li>
+        </ul>
+      </div>
+      <button (click)="navigateToLogin()" *ngIf="!authentication()" type="button"  class="btn btn-light me-2 custom-button">Giriş Yap</button>
+      <button (click)="navigateToRegister()" *ngIf="!authentication()" type="button" class="btn btn-success custom-button">Kayıt Ol</button>
+    </div>
+  </div>
+</nav>

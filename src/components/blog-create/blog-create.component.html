@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+
+
+
+<div class="center-container madimi-one-regular">
+    <p>Kelimelerle Büyü Yapma Zamanı! 🧙‍♂️✨ </p>
+</div>
+
+<div class="d-flex justify-content-center align-items-center mb-5 mt-5">
+    <div class="card" style="width: 80%;">
+      <div class="card-body">
+        <div class="input-group">
+            <span class="input-group-text">Başlık</span>
+            <textarea [(ngModel)]="title" class="form-control" aria-label="With textarea" rows="1"></textarea>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" >İçerik </span>
+            <textarea [(ngModel)]="content" class="form-control" aria-label="With textarea" rows="10"></textarea>
+        </div>
+        <input (change)="fileUpload($event)" accept=".jpg, .png, .jpeg" type="file" class="form-control">
+        <button (click)="createBlogPost()" type="button" class="btn btn-outline-secondary btnE">Paylaş</button>
+      </div>
+    </div>
+  </div>

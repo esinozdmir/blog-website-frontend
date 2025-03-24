@@ -1,0 +1,23 @@
+.customButton{
+    width: 46%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+    margin-right: 1%;
+    
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+.header{
+    font-size: xx-large;
+    font-family: "Madimi One", sans-serif;
+    margin-left: 25%;
+    margin-top: 2%;
+}
+

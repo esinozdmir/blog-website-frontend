@@ -1,0 +1,95 @@
+<app-navbar>
+</app-navbar>
+<div class="d-flex" style="width: 100%;">
+    <div class="align-items-center mb-5 mt-5" style="width: 60%;">
+        <div class="card custom-profile" style="width: 100%;">
+            <div class="card-body">
+                <h4 class="title card-title mb-3">Kullanıcı Bilgileri</h4>
+
+                <h6>{{userInfo?.firstName}}</h6>
+                <h6>{{userInfo?.lastName}}</h6>
+                <h6 class="mb-3">{{userInfo?.email}}</h6>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">ADI</span>
+                    <input type="text" class="form-control" [placeholder]="userInfo?.firstName" [(ngModel)]="firstName"
+                        name="title" [ngModelOptions]="{standalone: true}" aria-label="Başlık"
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">SOYADI</span>
+                    <input type="text" class="form-control" [placeholder]="userInfo?.lastName" [(ngModel)]="lastName"
+                        name="title" [ngModelOptions]="{standalone: true}" aria-label="Başlık"
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">EPOSTA</span>
+                    <input type="text" class="form-control" [placeholder]="userInfo?.email" [(ngModel)]="email"
+                        name="title" [ngModelOptions]="{standalone: true}" aria-label="Başlık"
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <button (click)="updateUser()" type="button"
+                            class="btn btn-outline-success me-2 mt-2 mb-5">Güncelle</button>
+
+                <h5 class="mb-3">Şifre Güncelle</h5>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">ŞİFRE</span>
+                    <input type="password" class="form-control" [placeholder]="'Eski Şifre'" [(ngModel)]="oldpassword"
+                        name="title" [ngModelOptions]="{standalone: true}" aria-label="Başlık"
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">ŞİFRE</span>
+                    <input type="password" class="form-control" [placeholder]="'Yeni Şifre'" [(ngModel)]="password"
+                        name="title" [ngModelOptions]="{standalone: true}" aria-label="Başlık"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">ŞİFRE</span>
+                    <input type="password" class="form-control" [placeholder]="'Yeni Şifre Tekrar'" [(ngModel)]="repassword"
+                        name="title" [ngModelOptions]="{standalone: true}" aria-label="Başlık"
+                        aria-describedby="basic-addon1">
+                </div>
+                <button (click)="updatePassword()" type="button"
+                            class="btn btn-outline-success me-2 mt-2">Güncelle</button>
+
+            </div>
+        </div>
+    </div>
+    <div style="width: 100%;">
+        <div class="d-inline" *ngFor="let post of posts; let i = index" style="width: 10%;">
+            <div class="align-items-center mb-5 mt-5" style="width: 100%;">
+                <div class="card custom-profile" style="width: 90%;">
+                    <div class="card-body">
+                        <h4 class="title card-title">Kullanıcının Postları</h4>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Başlık</span>
+                            <input type="text" class="form-control" [(ngModel)]="posts[i].title" name="title"
+                                [ngModelOptions]="{standalone: true}" aria-label="Başlık"
+                                aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">İçerik</span>
+                            <textarea rows="7" class="form-control" [(ngModel)]="posts[i].content" name="content"
+                                [ngModelOptions]="{standalone: true}" aria-label="Detaylı içerik"></textarea>
+                        </div>
+                        <div *ngIf="posts[i].imageUrl" class="image-container">
+                            <img [src]="posts[i].imageUrl" alt="image">
+                        </div>
+                        <input (change)="fileUpload($event)" accept=".jpg, .png, .jpeg" type="file"
+                            class="form-control">
+                        <button (click)="updateBlogPost(post)" type="button"
+                            class="btn btn-outline-success me-2 mt-2">Güncelle</button>
+                        <button (click)="deleteBlogPost(post)" type="button"
+                            class="btn btn-outline-danger mt-2">Sil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

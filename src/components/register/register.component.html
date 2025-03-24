@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-center align-items-center vh-100" style="background-color: rgba(90,132,122,255);">
+    <div class="card" style="width: 25%" >
+        <img src="maskot.jpeg" class="card-img-top" alt="Giriş Yap">
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+                <input type="text" [(ngModel)]="firstName" class="form-control" placeholder="İsim" aria-label="firstName" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+                <input type="text" [(ngModel)]="lastName" class="form-control" placeholder="Soyisim" aria-label="lastName" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope"></i></span>
+                <input type="text" [(ngModel)]="email" class="form-control" placeholder="Eposta" aria-label="email" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
+                <input type="text" [(ngModel)]="password" class="form-control" placeholder="Şifre" aria-label="password" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
+                <input type="text" [(ngModel)]="confirmpassword" class="form-control" placeholder="Şifre" aria-label="confirmpassword" aria-describedby="basic-addon1">
+            </div>
+            <button (click)="onRegisterClicked()" type="button" class="btn btn-outline-success w-100" >Kayıt Ol</button>  
+        </div>
+        <div class="button-container">
+            <button (click)="goToHome()" type="button" class="btn btn-outline-secondary customButton">Ana Sayfa</button>
+            <button (click)="goToLogin()" type="button" class="btn btn-outline-secondary customButton">Giriş Yap</button>
+        </div>
+    </div>
+</div>
