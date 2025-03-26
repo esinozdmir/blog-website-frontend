@@ -7,12 +7,13 @@
       style="width: 80%; ">
       <div class="card-body">
         <h4 (click)="goToPostDetails(blogPost,userNames[blogPost.authorId])"class="title card-title">{{blogPost.title}}</h4>
-        <div *ngIf="!isLikeClicked" (click)="blogLikeCount(blogPost.blogLike)">
+        <div class="d-flex">
           <i class="fa-solid fa-hands-clapping fa-lg mt-3 mb-3"></i>
+          <div class="blogLike">{{blogPost.blogLike}}</div>
+          <i class="fa-regular fa-comment fa-lg mt-3 mb-3 comment"></i>
+          <div class="blogLike">{{blogPost.comments.length}}</div>
         </div>
-        <div *ngIf="isLikeClicked" (click)="blogLikeCount(blogPost.blogLike)"> 
-          <i class="fa-solid fa-hands-clapping fa-xl mt-3 mb-3" style="color: #0400ff;"></i>
-        </div>
+
         <p (click)="goToPostDetails(blogPost,userNames[blogPost.authorId])" class="card-text">{{blogPost.content}}</p>
         <div *ngIf="blogPost.imageUrl" class="image-container">
           <img [src]="blogPost.imageUrl" alt="image">

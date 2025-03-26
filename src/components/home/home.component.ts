@@ -87,15 +87,6 @@ export class HomeComponent {
       this.router.navigate(['/post-details'],{state: {blogPostResponse:blogPost,userNameResponse:userName}});
     }
 
-    blogLikeCount(blogLike:number){
-      if (this.isLikeClicked == true) {
-        this.isLikeClicked = false;
-      }
-      else {
-        this.isLikeClicked = true;
-        blogLike++;
-      }
-      console.log("bloglike:",blogLike);
-    }
+    
 
 }

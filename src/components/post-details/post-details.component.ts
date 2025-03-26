@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { UserLocalStorage } from '../../services/userlocalstorage';
 import { CommentService } from '../../services/commentservice';
 import { User } from '../../models/usermodel';
+import { BlogService } from '../../services/blogservice';
+import { BlogLikeService } from '../../services/bloglikeservice';
 
 @Component({
   selector: 'app-post-details',
@@ -27,6 +29,7 @@ export class PostDetailsComponent {
   userNames: { [key: number]: string } = {};
   user = UserLocalStorage.getUser() || new User();
 
+  isLikeClicked:boolean = false;
 
   ngOnInit(): void {
     this.fetchComment();
@@ -34,7 +37,7 @@ export class PostDetailsComponent {
 
 
 
-  constructor(private router: Router, private http: HttpClient, private commentService: CommentService) {
+  constructor(private router: Router, private http: HttpClient, private commentService: CommentService,private blogService:BlogService,private blogLikeService:BlogLikeService) {
     const navigation = this.router.getCurrentNavigation();
 
     if (navigation?.extras.state) {
@@ -127,7 +130,25 @@ export class PostDetailsComponent {
     this.commentService.updateComment(payload);
   }
 
-  goToProfile(){
-    this.router.navigate(['/profile']);
+  addBlogLike(blogPostId: number, userId: number) {
+    if (this.isLikeClicked) {
+      this.isLikeClicked = false;
+    } else {
+      const payload = {
+        userId: this.user.id,
+        blogPost: this.blogPost,
+      };
+  
+      this.blogLikeService.likePost(payload).subscribe((response: boolean) => {
+        if (response) {
+          this.blogService.addBlogLike(blogPostId, userId);
+          this.isLikeClicked = true;
+        } else {
+          console.log("Beğenme işlemi başarısız oldu, addBlogLike çalıştırılmadı.");
+        }
+      });
+    }
   }
+  
+
 }

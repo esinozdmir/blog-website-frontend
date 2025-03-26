@@ -18,6 +18,7 @@ export class LoginComponent {
 
   email: string = '';
   password: string = '';
+  passwordType: string = 'password'; 
 
   onLoginClicked() {
     this.authService.login(this.email, this.password);
@@ -28,6 +29,10 @@ export class LoginComponent {
 
   goToRegister(){
     this.router.navigate(['/register']);
+  }
+
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';  
   }
 
 }

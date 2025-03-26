@@ -18,7 +18,7 @@ export class BlogService {
     constructor(private http: HttpClient, private router: Router) { }
 
     user = UserLocalStorage.getUser() || new User();
-    createBlogPost(formdata:FormData) {
+    createBlogPost(formdata: FormData) {
 
         this.http.post(this.baseUrl + "create-blog-post", formdata).subscribe({
             next: (response) => {
@@ -31,13 +31,13 @@ export class BlogService {
             },
         });
 
-        console.log("formdata",formdata.getAll);
-       
+        console.log("formdata", formdata.getAll);
+
     }
 
     updateBlogPost(post: FormData) {
 
-        console.log("update :",post);
+        console.log("update :", post);
 
         if (!post) {
             console.error("Hata: Kullanıcı ID bulunamadı!");
@@ -64,6 +64,11 @@ export class BlogService {
             return;
         }
 
+        const confirmDelete = window.confirm("Bu blog gönderisini silmek istediğinizden emin misiniz?");
+        if (!confirmDelete) {
+            return;
+        }
+
         const params = new HttpParams().set('id', post.blogPostId.toString());
 
         console.log("Silinecek ID:", post.blogPostId);
@@ -80,20 +85,37 @@ export class BlogService {
         });
     }
 
-    getUserPosts(userid:number): Observable<BlogPost[]> {
+    getUserPosts(userid: number): Observable<BlogPost[]> {
         const params = new HttpParams().set('id', userid.toString() || '0');
         return this.http.get<BlogPost[]>(this.baseUrl + "get-post-by-id", { params })
-          .pipe(
-            catchError(err => {
-              console.log("error", err);
-              return of([]);
-            })
-          );
-      }
+            .pipe(
+                catchError(err => {
+                    console.log("error", err);
+                    return of([]);
+                })
+            );
+    }
 
-      /*fileUpload(selectedFile:File){
-        const params = new HttpParams().set('id', selectedFile);
-      }*/
+    /*fileUpload(selectedFile:File){
+      const params = new HttpParams().set('id', selectedFile);
+    }*/
 
+    addBlogLike(blogPostId: number, userId: number) {
+        console.log("blogpostid geldi: ", blogPostId)
+        const params = new HttpParams().set('id', blogPostId || 0).set('userId', userId);
+
+        this.http.patch(this.baseUrl + "add-blog-like", params).subscribe({
+            next: (response) => {
+                alert("Blog like arttırma işleminiz başarıyla gerçekleşti.");
+                console.log("Blog like arttırma başarılı:", response);
+            },
+            error: (err) => {
+                console.error("Blog like arttırma işlemi başarısız:", err);
+            },
+        });
+
+    }
+
+    
 
 }

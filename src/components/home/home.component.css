@@ -30,3 +30,12 @@
   .date-end{
     margin-right: 85%;
   }
+
+  .blogLike{
+    margin-left : 1%;
+    margin-top: 0.5%;
+  }
+  .comment{
+    margin-left : 3%;
+    margin-top: 0.5%;
+  }
