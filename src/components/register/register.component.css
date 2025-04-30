@@ -13,3 +13,10 @@
     justify-content: center;
     width: 100%;
   }
+
+  .header{
+    font-size: xx-large;
+    font-family: "Madimi One", sans-serif;
+    margin-left: 35%;
+    margin-top: 2%;
+}

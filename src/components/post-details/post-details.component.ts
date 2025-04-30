@@ -144,6 +144,7 @@ export class PostDetailsComponent {
           this.blogService.addBlogLike(blogPostId, userId);
           this.isLikeClicked = true;
         } else {
+          this.blogLikeService.unLikePost(payload);
           console.log("Beğenme işlemi başarısız oldu, addBlogLike çalıştırılmadı.");
         }
       });

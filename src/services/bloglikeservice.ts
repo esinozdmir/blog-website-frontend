@@ -16,8 +16,8 @@ export class BlogLikeService{
 
     likePost(payload: any): Observable<boolean> {
       if (!this.user) {
-        alert("Yorum yapmak için lütfen giriş yapınız.");
-        return of(false); // Giriş yoksa otomatik false döner
+        alert("Beğenmek için için lütfen giriş yapınız.");
+        return of(false); 
       }
     
       console.log(payload, "blog like payload böyle geldi.");
@@ -28,10 +28,22 @@ export class BlogLikeService{
         }),
         catchError(error => {
           console.error('BlogLike gönderilirken hata oluştu', error);
-          return of(false); // Hata varsa false döndür
+          return of(false); 
         })
       );
     }
+
+    unLikePost(payload: any){
+      if (!this.user) {
+        alert("Beğenmek için için lütfen giriş yapınız.");
+      }
+    
+      console.log(payload, "blog like payload böyle geldi.");
+    
+      this.http.delete<boolean>(this.baseUrl + "unLike-post", payload);
+    }
+
+
     
 
 }
